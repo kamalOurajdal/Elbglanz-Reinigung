@@ -1,0 +1,52 @@
+<section class="py-20 md:py-28 bg-white" id="faq">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 text-purple-700 font-medium text-sm mb-4"
+      >
+        <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+        Häufig gestellte Fragen
+      </div>
+      <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-4">
+        Haben Sie <span class="text-purple-600">Fragen?</span>
+      </h2>
+      <p class="text-xl text-gray-600">
+        Hier finden Sie Antworten auf die wichtigsten Fragen
+      </p>
+    </div>
+
+    <div class="space-y-6">
+      @for (faq of faqs; track faq.q) {
+      <details
+        class="group rounded-2xl bg-white shadow-lg shadow-gray-100/50 ring-1 ring-gray-100 hover:shadow-xl hover:ring-purple-200/50 transition-all duration-300"
+      >
+        <summary
+          class="cursor-pointer p-6 font-bold text-lg text-gray-900 flex items-center justify-between hover:text-purple-600 transition-colors"
+        >
+          <span class="flex-1 pr-4">{{ faq.q }}</span>
+          <div
+            class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center group-open:rotate-45 transition-transform duration-300"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M12 4v16m8-8H4"
+              />
+            </svg>
+          </div>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-gray-600 leading-relaxed text-lg">{{ faq.a }}</p>
+        </div>
+      </details>
+      }
+    </div>
+  </div>
+</section>

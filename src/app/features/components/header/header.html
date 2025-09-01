@@ -1,0 +1,84 @@
+<!-- NAV -->
+<header
+  class="sticky top-0 z-50 backdrop-blur-lg supports-[backdrop-filter]:bg-white/80 bg-white/90 border-b border-gray-200/60 shadow-sm rounded-2xl overflow-hidden"
+>
+  <div
+    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between"
+  >
+    <div
+      class="flex items-center gap-3 cursor-pointer"
+      (click)="scrollToId('home')"
+    >
+      <div class="border border-blue-600 p-1 rounded-lg">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#2563eb"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          class="w-8 h-8 fill-indingo-600"
+        >
+          <path [attr.d]="icons.sparkles" />
+        </svg>
+      </div>
+      <div>
+        <span class="font-bold  text-lg text-blue-600">{{ brand.name }}</span>
+        <p class="text-xs text-gray-500 font-medium">
+          Professionelle Reinigung
+        </p>
+      </div>
+    </div>
+    <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+      @for (item of navItems; track $index) {
+      <button
+        (click)="scrollToId(item.id)"
+        class="text-gray-700 hover:text-blue-600 transition-colors duration-200 relative group cursor-pointer"
+      >
+        {{ item.label }}
+        <span
+          class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"
+        ></span>
+      </button>
+      }
+    </nav>              
+
+    <button
+      (click)="toggleMobileMenu()"
+      class="cursor-pointer relative md:hidden w-10 h-10 rounded-lg hover:bg-gray-100 focus:bg-gray-100 transition-colors duration-200 flex items-center justify-center group"
+      [attr.aria-expanded]="mobileMenuOpen"
+      [attr.aria-label]="mobileMenuOpen ? 'Close menu' : 'Open menu'"
+    >
+      <div class="flex flex-col justify-center w-5 h-5">
+        <span
+          class="block h-0.5 w-5 bg-gray-700 transform transition-all duration-300 group-hover:bg-blue-600"
+          [class.rotate-45]="mobileMenuOpen"
+          [class.translate-y-1]="mobileMenuOpen"
+        ></span>
+        <span
+          class="block h-0.5 w-5 bg-gray-700 transform transition-all duration-300 mt-1 group-hover:bg-blue-600"
+          [class.opacity-0]="mobileMenuOpen"
+        ></span>
+        <span
+          class="block h-0.5 w-5 bg-gray-700 transform transition-all duration-300 mt-1 group-hover:bg-blue-600"
+          [class.-rotate-45]="mobileMenuOpen"
+          [class.-translate-y-2]="mobileMenuOpen"
+        ></span>
+      </div>
+    </button>
+  </div>
+  @if (mobileMenuOpen) {
+  <div class="md:hidden border-t border-gray-200 bg-white/95 backdrop-blur-lg">
+    <div class="px-4 py-4 space-y-1">
+      @for (item of navItems; track item.id) {
+      <button
+        (click)="closeMobileMenuAndScroll(item.id)"
+        class="cursor-pointer block w-full text-left py-3 px-4 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all"
+      >
+        {{ item.label }}
+      </button>
+      }
+    </div>
+  </div>
+  }
+</header>
