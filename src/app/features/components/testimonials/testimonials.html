@@ -19,12 +19,12 @@
     </div>
 
     <!-- Infinite Scroll Container -->
-    <div class="relative">
-      <div class="overflow-hidden">
-        <div class="flex gap-8 animate-scroll-rtl items-stretch">
+    <div class="relative group">
+      <div class="overflow-x-auto scrollbar-hide">
+        <div class="flex gap-8 animate-scroll-rtl items-stretch group-hover:[animation-play-state:paused]">
           <!-- First set of testimonials -->
            @for (testimonial of testimonials; track testimonial.name + '_1') {
-              <div class="flex-shrink-0 w-96">
+              <div class="flex-shrink-0 w-72 md:w-96">
                 <figure
                   class="group rounded-2xl p-6 bg-white shadow-lg shadow-gray-100/50 border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1  relative"
                 >
@@ -91,7 +91,7 @@
 
           <!-- Duplicate set for seamless loop -->
            @for (testimonial of testimonials; track testimonial.name + '_1') {
-              <div class="flex-shrink-0 w-96">
+              <div class="flex-shrink-0 w-72 md:w-96">
                 <figure
                   class="group rounded-2xl p-6 bg-white shadow-lg shadow-gray-100/50 border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1  relative"
                 >

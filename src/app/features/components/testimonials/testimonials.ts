@@ -25,7 +25,7 @@ interface Testimonial {
     }
 
     .animate-scroll-rtl {
-      animation: scroll-rtl 60s linear infinite;
+      animation: scroll-rtl 30s linear infinite;
       width: calc(200%);
     }
 
