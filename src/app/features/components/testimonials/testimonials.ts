@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 
 
 interface Testimonial {
@@ -38,7 +38,7 @@ interface Testimonial {
     }
   `]
 })
-export class Testimonials {
+export class Testimonials implements AfterViewInit, OnDestroy {
 
    testimonials: Testimonial[] = [
     {
@@ -130,4 +130,49 @@ export class Testimonials {
   getStarArray(count: number): number[] {
     return Array(count).fill(0);
   }
+
+  // Get a reference to the <div #scroller> element from the template
+  @ViewChild('scroller') scroller!: ElementRef<HTMLDivElement>;
+
+  // A reference to the event listener so we can remove it later
+  private scrollListener!: () => void;
+
+  constructor() { }
+
+  ngAfterViewInit(): void {
+    // We set up the listener in AfterViewInit to ensure the element is available
+    this.setupInfiniteScroll();
+  }
+
+  setupInfiniteScroll(): void {
+    const scrollerEl = this.scroller.nativeElement;
+
+    this.scrollListener = () => {
+      // Calculate the halfway point of the entire scrollable width
+      const scrollWidth = scrollerEl.scrollWidth;
+      const halfwayPoint = scrollWidth / 2;
+      
+      // Get the current horizontal scroll position
+      const scrollLeft = scrollerEl.scrollLeft;
+
+      // If the user scrolls past the first set of items...
+      if (scrollLeft >= halfwayPoint) {
+        // ...teleport them back to the start of the identical items.
+        // We subtract the width of one full set of items to maintain the visual position.
+        scrollerEl.scrollLeft -= halfwayPoint;
+      }
+    };
+
+    // Add the scroll event listener
+    scrollerEl.addEventListener('scroll', this.scrollListener);
+  }
+
+  ngOnDestroy(): void {
+    // IMPORTANT: Clean up the event listener to prevent memory leaks
+    if (this.scroller && this.scrollListener) {
+      this.scroller.nativeElement.removeEventListener('scroll', this.scrollListener);
+    }
+  }
+
+  // Your existing getStarArray function
 }

@@ -20,7 +20,7 @@
 
     <!-- Infinite Scroll Container -->
     <div class="relative group">
-      <div class="overflow-x-auto scrollbar-hide">
+      <div #scroller class="overflow-x-auto scrollbar-hide">
         <div class="flex gap-8 animate-scroll-rtl items-stretch group-hover:[animation-play-state:paused]">
           <!-- First set of testimonials -->
            @for (testimonial of testimonials; track testimonial.name + '_1') {
