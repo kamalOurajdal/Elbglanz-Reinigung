@@ -1,11 +1,12 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-import nodemailer from 'nodemailer';
+// Use CommonJS syntax to avoid ES Module errors in some environments
+const nodemailer = require('nodemailer');
 
-// Main function handler
-export default async function handler(
-  request: VercelRequest,
-  response: VercelResponse,
-) {
+/**
+ * Main function handler
+ * @param {import('@vercel/node').VercelRequest} request
+ * @param {import('@vercel/node').VercelResponse} response
+ */
+module.exports = async (request:any, response:any) => {
   // 1. Only allow POST requests
   if (request.method !== 'POST') {
     response.setHeader('Allow', 'POST');
@@ -28,15 +29,15 @@ export default async function handler(
     port: 465,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: process.env.GMAIL_USER, // Your Gmail address
-      pass: process.env.GMAIL_APP_PASSWORD, // Your Gmail App Password
+      user: process.env["GMAIL_USER"], // Your Gmail address
+      pass: process.env["GMAIL_APP_PASSWORD"], // Your Gmail App Password
     },
   });
 
   // 5. Define the email options
   const mailOptions = {
-    from: `"Contact Form" <${process.env.GMAIL_USER}>`, // Sender address (your app)
-    to: process.env.RECIPIENT_EMAIL, // The email address you want to receive the messages on
+    from: `"Contact Form" <${process.env["GMAIL_USER"]}>`, // Sender address (your app)
+    to: process.env["RECIPIENT_EMAIL"], // The email address you want to receive the messages on
     subject: `New Contact Form Submission from ${name}`,
     html: `
       <h2>New Message from your Website Contact Form</h2>
@@ -57,4 +58,5 @@ export default async function handler(
     // It's good practice to not expose detailed error messages to the client
     return response.status(500).json({ error: 'Failed to send email.' });
   }
-}
+};
+
