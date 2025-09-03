@@ -8,7 +8,7 @@ const nodemailer = require('nodemailer');
  */
 module.exports = async (request, response) => {
   // 1. Only allow POST requests
-  return response.status(200).json({ success: true, message: 'Email sent successfully!' });
+  // return response.status(200).json({ success: true, message: 'Email sent successfully!' });
 
   if (request.method !== 'POST') {
     response.setHeader('Allow', 'POST');
