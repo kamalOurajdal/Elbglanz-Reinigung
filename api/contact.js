@@ -6,7 +6,7 @@ const nodemailer = require('nodemailer');
  * @param {import('@vercel/node').VercelRequest} request
  * @param {import('@vercel/node').VercelResponse} response
  */
-module.exports = async (request:any, response:any) => {
+module.exports = async (request, response) => {
   // 1. Only allow POST requests
   if (request.method !== 'POST') {
     response.setHeader('Allow', 'POST');
