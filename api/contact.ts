@@ -1,6 +1,7 @@
 import nodemailer from "nodemailer";
 
 export async function POST(request: Request) {
+  console.log("Received contact form submission");
   const { name, email, phone, message, service } = await request.json();
 
   const transporter = nodemailer.createTransport({
