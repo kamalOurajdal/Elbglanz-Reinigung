@@ -8,8 +8,6 @@ const nodemailer = require('nodemailer');
  */
 module.exports = async (request, response) => {
   // 1. Only allow POST requests
-  // return response.status(200).json({ success: true, message: 'Email sent successfully!' });
-  console.log("Request method:", request.method);
   if (request.method !== 'POST') {
     response.setHeader('Allow', 'POST');
     return response.status(405).end('Method Not Allowed');
@@ -24,22 +22,21 @@ module.exports = async (request, response) => {
   }
 
   // 4. Set up the Nodemailer transporter
-  // We use environment variables for security.
-  // These must be configured in your Vercel project settings.
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: process.env["GMAIL_USER"], // Your Gmail address
-      pass: process.env["GMAIL_APP_PASSWORD"], // Your Gmail App Password
+      user: process.env.GMAIL_USER, // Your Gmail address
+      pass: process.env.GMAIL_APP_PASSWORD, // Your Gmail App Password
     },
   });
 
   // 5. Define the email options
   const mailOptions = {
-    from: `"Contact Form" <${process.env["GMAIL_USER"]}>`, // Sender address (your app)
-    to: process.env["RECIPIENT_EMAIL"], // The email address you want to receive the messages on
+    from: `"Cleaning App Contact" <${process.env.GMAIL_USER}>`, // <-- You can change this display name
+    to: process.env.RECIPIENT_EMAIL, // The email address you want to receive the messages on
+    replyTo: email, // This ensures hitting "Reply" goes to the client
     subject: `New Contact Form Submission from ${name}`,
     html: `
       <h2>New Message from your Website Contact Form</h2>
