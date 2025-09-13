@@ -1,5 +1,4 @@
-const host = "http://localhost";
+const host = "https://elbglanz-reinigung.vercel.app";
 export const environment = {
-  production: false,
   api: `${host}/api/`,
 };
