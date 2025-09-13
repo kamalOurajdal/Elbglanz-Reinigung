@@ -33,11 +33,6 @@ interface Testimonial {
         will-change: transform;
       }
 
-      // pause animation on hover
-      .group:hover .animate-infinite-scroll {
-        animation-play-state: paused;
-      }
-
       /* Accessibility: Pause the animation for users who prefer reduced motion. */
       @media (prefers-reduced-motion: reduce) {
         .animate-infinite-scroll {
