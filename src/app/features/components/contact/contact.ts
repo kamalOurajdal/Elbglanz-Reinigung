@@ -213,7 +213,7 @@ export class Contact {
     this.contactService.sendEmail(payload).subscribe({
       next: (response: SubmitResult) => {
         this.submitting = false;
-        this.submitResult = { success: true, message: response.message || "Your message has been sent successfully! We'll get back to you soon." };
+        this.submitResult = { success: true, message: response.message || "Ihre Nachricht wurde erfolgreich gesendet! Wir melden uns bald bei Ihnen." };
         this.resetForm();
         setTimeout(() => {
           this.submitResult = { success: null, message: '' };
@@ -221,7 +221,7 @@ export class Contact {
       },
       error: (error) => {
         this.submitting = false;
-        this.submitResult = { success: false, message: 'Failed to send email. Please try again later.' };
+        this.submitResult = { success: false, message: 'Fehler beim Senden der E-Mail. Bitte versuchen Sie es später erneut.' };
         // this.submitResult = { success: true, message: 'Email sent successfully!' };
         console.error('Email sending error:', error);
       }

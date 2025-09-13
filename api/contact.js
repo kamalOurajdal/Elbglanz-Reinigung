@@ -53,31 +53,31 @@ module.exports = async (request, response) => {
   if (!firstName || !lastName || !service) {
     return response
       .status(400)
-      .json({ error: "First name, last name, and service are required." });
+      .json({ error: "Vorname, Nachname und Dienstleistung sind erforderlich." });
   }
 
   // Require at least an email or a phone number for contact.
   if (!email && !phone) {
     return response
       .status(400)
-      .json({ error: "Please provide either an email or a phone number." });
+      .json({ error: "Bitte geben Sie entweder eine E-Mail oder eine Telefonnummer an." });
   }
 
   // Validate email format if it exists.
   if (email && !validateEmail(email)) {
     return response
       .status(400)
-      .json({ error: "Please provide a valid email address." });
+      .json({ error: "Bitte geben Sie eine gültige E-Mail-Adresse an." });
   }
 
   // 5. Create a well-designed HTML email body.
   const htmlBody = `
     <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Service Inquiry</title>
+    <title>Neue Service-Anfrage</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
@@ -87,198 +87,61 @@ module.exports = async (request, response) => {
             margin: 0;
             padding: 20px 0;
         }
-        
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-        
-        .header {
-            background-color: #2563eb;
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-            font-weight: 600;
-        }
-        
-        .content {
-            padding: 30px;
-        }
-        
-        .section {
-            margin-bottom: 30px;
-        }
-        
-        .section h2 {
-            color: #2563eb;
-            font-size: 18px;
-            font-weight: 600;
-            margin: 0 0 15px 0;
-            border-bottom: 2px solid #e5e7eb;
-            padding-bottom: 8px;
-        }
-        
-        .info-row {
-            display: flex;
-            padding: 12px 0;
-            border-bottom: 1px solid #f3f4f6;
-        }
-        
-        .info-row:last-child {
-            border-bottom: none;
-        }
-        
-        .label {
-            font-weight: 600;
-            color: #6b7280;
-            width: 100px;
-            flex-shrink: 0;
-        }
-        
-        .value {
-            color: #111827;
-            flex: 1;
-        }
-        
-        .value a {
-            color: #2563eb;
-            text-decoration: none;
-        }
-        
-        .value a:hover {
-            text-decoration: underline;
-        }
-        
-        .message-box {
-            background-color: #f9fafb;
-            border: 1px solid #e5e7eb;
-            border-radius: 6px;
-            padding: 20px;
-            margin-top: 10px;
-        }
-        
-        .message-text {
-            margin: 0;
-            color: #374151;
-            white-space: pre-wrap;
-        }
-        
-        .no-message {
-            color: #9ca3af;
-            font-style: italic;
-            text-align: center;
-        }
-        
-        .footer {
-            background-color: #f9fafb;
-            padding: 20px 30px;
-            text-align: center;
-            border-top: 1px solid #e5e7eb;
-            color: #6b7280;
-            font-size: 14px;
-        }
-        
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-            
-            .container {
-                margin: 0;
-            }
-            
-            .header, .content, .footer {
-                padding: 20px;
-            }
-            
-            .info-row {
-                flex-direction: column;
-                gap: 4px;
-            }
-            
-            .label {
-                width: auto;
-                font-size: 14px;
-            }
-        }
+        .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
+        .header { background-color: #2563eb; color: white; padding: 30px; text-align: center; }
+        .header h1 { margin: 0; font-size: 24px; font-weight: 600; }
+        .content { padding: 30px; }
+        .section { margin-bottom: 30px; }
+        .section h2 { color: #2563eb; font-size: 18px; font-weight: 600; margin: 0 0 15px 0; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px; }
+        .info-row { display: flex; padding: 12px 0; border-bottom: 1px solid #f3f4f6; }
+        .info-row:last-child { border-bottom: none; }
+        .label { font-weight: 600; color: #6b7280; width: 100px; flex-shrink: 0; }
+        .value { color: #111827; flex: 1; }
+        .value a { color: #2563eb; text-decoration: none; }
+        .value a:hover { text-decoration: underline; }
+        .message-box { background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; padding: 20px; margin-top: 10px; }
+        .message-text { margin: 0; color: #374151; white-space: pre-wrap; }
+        .no-message { color: #9ca3af; font-style: italic; text-align: center; }
+        .footer { background-color: #f9fafb; padding: 20px 30px; text-align: center; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 14px; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>New Service Inquiry</h1>
+            <h1>Neue Service-Anfrage</h1>
         </div>
         
         <div class="content">
             <div class="section">
-                <h2>Client Details</h2>
-                <div class="info-row">
-                    <div class="label">Name: </div>
-                    <div class="value">${fullName}</div>
-                </div>
-                <div class="info-row">
-                    <div class="label">Email: </div>
-                    <div class="value">
-                        ${
-                          email
-                            ? `<a href="mailto:${email}">${email}</a>`
-                            : "<i style='color: #9ca3af;'>Not provided</i>"
-                        }
-                    </div>
-                </div>
-                <div class="info-row">
-                    <div class="label">Phone: </div>
-                    <div class="value">
-                        ${
-                          phone
-                            ? `<a href="tel:${phone}">${phone}</a>`
-                            : "<i style='color: #9ca3af;'>Not provided</i>"
-                        }
-                    </div>
-                </div>
-                <div class="info-row">
-                    <div class="label">Service: </div>
-                    <div class="value">
-                        <span class="service-tag">${service}</span>
-                    </div>
-                </div>
+                <h2>Kundendetails</h2>
+                <div class="info-row"><div class="label">Name: </div><div class="value">${fullName}</div></div>
+                <div class="info-row"><div class="label">E-Mail: </div><div class="value">${ email ? `<a href="mailto:${email}">${email}</a>` : "<i style='color: #9ca3af;'>Nicht angegeben</i>" }</div></div>
+                <div class="info-row"><div class="label">Telefon: </div><div class="value">${ phone ? `<a href="tel:${phone}">${phone}</a>` : "<i style='color: #9ca3af;'>Nicht angegeben</i>" }</div></div>
+                <div class="info-row"><div class="label">Dienstleistung: </div><div class="value"><span class="service-tag">${service}</span></div></div>
             </div>
             
             <div class="section">
-                <h2>Message</h2>
+                <h2>Nachricht</h2>
                 <div class="message-box">
-                    ${
-                      message
-                        ? `<p class="message-text">${message}</p>`
-                        : `<p class="no-message">No message provided</p>`
-                    }
+                    ${ message ? `<p class="message-text">${message}</p>` : `<p class="no-message">Keine Nachricht angegeben</p>` }
                 </div>
             </div>
         </div>
         
         <div class="footer">
-            Received from your website contact form<br>
-            ${new Date().toLocaleDateString()} at ${new Date().toLocaleTimeString()}
+            Erhalten über das Kontaktformular Ihrer Website<br>
+            ${new Date().toLocaleDateString("de-DE")} um ${new Date().toLocaleTimeString("de-DE")}
         </div>
     </div>
 </body>
 </html>
-    `;
+  `;
 
   // 6. Configure the Nodemailer transporter using environment variables.
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
-    secure: true, // Use SSL/TLS
+    secure: true,
     auth: {
       user: process.env.GMAIL_USER,
       pass: process.env.GMAIL_APP_PASSWORD,
@@ -287,25 +150,24 @@ module.exports = async (request, response) => {
 
   // 7. Define the email options.
   const mailOptions = {
-    from: `"Website Inquiry" <${process.env.GMAIL_USER}>`,
+    from: `"Website-Anfrage" <${process.env.GMAIL_USER}>`,
     to: process.env.RECIPIENT_EMAIL,
-    replyTo: email, // Set the "Reply-To" to the client's email for convenience.
-    subject: `New Inquiry for ${service} from ${fullName}`,
+    replyTo: email,
+    subject: `Neue Anfrage für ${service} von ${fullName}`,
     html: htmlBody,
   };
 
-  // 8. Send the email and provide a response to the client.
+  // 8. E-Mail senden und Antwort zurückgeben.
   try {
     await transporter.sendMail(mailOptions);
     return response.status(200).json({
       success: true,
-      message:
-        "Your message has been sent successfully! We'll get back to you soon.",
+      message: "Ihre Nachricht wurde erfolgreich gesendet! Wir melden uns bald bei Ihnen.",
     });
   } catch (error) {
-    console.error("Failed to send email:", error);
+    console.error("Fehler beim Senden der E-Mail:", error);
     return response.status(500).json({
-      error: "There was an issue sending your message. Please try again later.",
+      error: "Beim Senden Ihrer Nachricht ist ein Problem aufgetreten. Bitte versuchen Sie es später erneut.",
     });
   }
 };
