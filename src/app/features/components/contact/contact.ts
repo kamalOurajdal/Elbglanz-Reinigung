@@ -1,41 +1,14 @@
 import { Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { OSSI_SERVICES, Service } from '../../../shared/constants';
+import { BRAND, OSSI_SERVICES, Service } from '../../../shared/constants';
 import { ContactService } from './contact.service';
+import { ContactForm, ContactModel } from './models/contact.model';
 
 interface SubmitResult {
   success?: boolean | null;
   message?: string;
 }
-
-interface ContactForm {
-  firstName: FormControl<string>;
-  lastName: FormControl<string>;
-  phone: FormControl<string>;
-  email: FormControl<string>;
-  service: FormControl<string | null>;
-  message: FormControl<string | null>;
-  source: FormControl<string>;
-}
-
-interface ContactModel {
-  firstName: string;
-  lastName: string;
-  phone: string | null;
-  email: string | null;
-  service: string | null;
-  message: string | null;
-  source: string;
-}
-
-// Brand constants - you can replace these with your actual brand information
-const BRAND = {
-  phone: '+49 30 12345678',
-  email: 'kontakt@reinigungsservice.de',
-  address: 'Musterstraße 123, 10115 Berlin',
-  locationUrl: 'https://maps.google.com/?q=Musterstraße+123,+10115+Berlin'
-};
 
 @Component({
   selector: 'app-contact',
@@ -43,6 +16,7 @@ const BRAND = {
   templateUrl: './contact.html'
 })
 export class Contact {
+  @ViewChild('serviceArea', { static: false }) serviceArea?: ElementRef<HTMLElement>;
   private readonly contactService = inject(ContactService);
   // Brand information
   brand = BRAND;
@@ -57,7 +31,7 @@ export class Contact {
   selectedService: Service | null = null;
 
   // ViewChild for dropdown click detection
-  @ViewChild('serviceArea', { static: false }) serviceArea?: ElementRef<HTMLElement>;
+
 
   // Current year for any copyright or date displays
   currentYear = new Date().getFullYear();
@@ -81,8 +55,7 @@ export class Contact {
       phone: this.fb.control<string>(''),
       email: this.fb.control<string>(''),
       service: this.fb.control<string | null>(null, [Validators.required]),
-      message: this.fb.control<string | null>(null),
-      source: this.fb.control<string>('website'),
+      message: this.fb.control<string | null>(null)
     }, { 
       validators: [this.requirePhoneOrEmail()] 
     });
@@ -234,15 +207,17 @@ export class Contact {
       phone: formData.phone || null,
       email: formData.email || null,
       service: this.selectedService.title,
-      message: formData.message || null,
-      source: formData.source || 'website'
+      message: formData.message || null
     };
 
     this.contactService.sendEmail(payload).subscribe({
-      next: (response) => {
+      next: (response: SubmitResult) => {
         this.submitting = false;
-        this.submitResult = { success: true, message: 'Email sent successfully!' };
+        this.submitResult = { success: true, message: response.message || "Your message has been sent successfully! We'll get back to you soon." };
         this.resetForm();
+        setTimeout(() => {
+          this.submitResult = { success: null, message: '' };
+        }, 5000);
       },
       error: (error) => {
         this.submitting = false;
@@ -265,8 +240,7 @@ export class Contact {
       phone: '',
       email: '',
       service: null,
-      message: null,
-      source: 'website'
+      message: null
     });
     this.selectedService = null;
     this.showServiceDropdown = false;

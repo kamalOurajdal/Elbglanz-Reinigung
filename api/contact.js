@@ -45,7 +45,6 @@ module.exports = async (request, response) => {
     email,
     service,
     message,
-    source = "website", // Default source to 'website' if not provided
   } = request.body;
 
   const fullName = `${firstName || ""} ${lastName || ""}`.trim();
@@ -159,15 +158,6 @@ module.exports = async (request, response) => {
             text-decoration: underline;
         }
         
-        .service-tag {
-            background-color: #2563eb;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 16px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-        
         .message-box {
             background-color: #f9fafb;
             border: 1px solid #e5e7eb;
@@ -232,38 +222,34 @@ module.exports = async (request, response) => {
             <div class="section">
                 <h2>Client Details</h2>
                 <div class="info-row">
-                    <div class="label">Name:</div>
+                    <div class="label">Name: </div>
                     <div class="value">${fullName}</div>
                 </div>
                 <div class="info-row">
-                    <div class="label">Email:</div>
+                    <div class="label">Email: </div>
                     <div class="value">
                         ${
                           email
                             ? `<a href="mailto:${email}">${email}</a>`
-                            : "Not provided"
+                            : "<i style='color: #9ca3af;'>Not provided</i>"
                         }
                     </div>
                 </div>
                 <div class="info-row">
-                    <div class="label">Phone:</div>
+                    <div class="label">Phone: </div>
                     <div class="value">
                         ${
                           phone
                             ? `<a href="tel:${phone}">${phone}</a>`
-                            : "Not provided"
+                            : "<i style='color: #9ca3af;'>Not provided</i>"
                         }
                     </div>
                 </div>
                 <div class="info-row">
-                    <div class="label">Service:</div>
+                    <div class="label">Service: </div>
                     <div class="value">
                         <span class="service-tag">${service}</span>
                     </div>
-                </div>
-                <div class="info-row">
-                    <div class="label">Source:</div>
-                    <div class="value">${source}</div>
                 </div>
             </div>
             
@@ -311,19 +297,15 @@ module.exports = async (request, response) => {
   // 8. Send the email and provide a response to the client.
   try {
     await transporter.sendMail(mailOptions);
-    return response
-      .status(200)
-      .json({
-        success: true,
-        message: "Your message has been sent successfully!",
-      });
+    return response.status(200).json({
+      success: true,
+      message:
+        "Your message has been sent successfully! We'll get back to you soon.",
+    });
   } catch (error) {
     console.error("Failed to send email:", error);
-    return response
-      .status(500)
-      .json({
-        error:
-          "There was an issue sending your message. Please try again later.",
-      });
+    return response.status(500).json({
+      error: "There was an issue sending your message. Please try again later.",
+    });
   }
 };

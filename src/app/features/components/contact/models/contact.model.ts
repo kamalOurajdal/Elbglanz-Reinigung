@@ -7,7 +7,6 @@ export interface ContactModel {
     email: string | null;
     service: string | null;
     message: string | null;
-    source: string;
 }
 
 export interface ContactForm {
@@ -17,5 +16,4 @@ export interface ContactForm {
     email: FormControl<string>;
     service: FormControl<string | null>;
     message: FormControl<string | null>;
-    source?: FormControl<string>;
 }
