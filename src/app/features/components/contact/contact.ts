@@ -1,6 +1,5 @@
 import { Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { OSSI_SERVICES, Service } from '../../../shared/constants';
 import { ContactService } from './contact.service';
@@ -68,8 +67,6 @@ export class Contact {
 
   // Dependency injection
   private fb = inject(NonNullableFormBuilder);
-  private http = inject(HttpClient);
-
   constructor() {
     this.contactForm = this.initializeForm();
   }
