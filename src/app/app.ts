@@ -14,6 +14,7 @@ import { Faq } from "./features/components/faq/faq";
 import { Contact } from "./features/components/contact/contact";
 import { Footer } from "./features/components/footer/footer";
 import { AboutUs } from "./features/components/about-us/about-us";
+import { Team } from "./features/components/team/team";
 
 
 @Component({
@@ -31,7 +32,8 @@ import { AboutUs } from "./features/components/about-us/about-us";
     Faq,
     Contact,
     Footer,
-    AboutUs
+    AboutUs,
+    Team
 ],
   template: `
     <div
@@ -56,6 +58,8 @@ import { AboutUs } from "./features/components/about-us/about-us";
 
       <!-- STATS -->
       <!-- <app-stats/> -->
+       <!-- <app-team></app-team> -->
+       <app-team-2></app-team-2>
 
       <!-- TESTIMONIALS -->
       <app-testimonials/>
@@ -66,7 +70,7 @@ import { AboutUs } from "./features/components/about-us/about-us";
       <app-contact/>
 
       <!-- FAQ -->
-    <app-faq/>
+      <app-faq/>
 
       <!-- FOOTER -->
       <app-footer/>

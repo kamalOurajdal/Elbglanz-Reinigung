@@ -4,14 +4,22 @@ interface Brand {
   phone: string;
   email: string;
   address: string;
+  locationUrl?: string;
+}
+
+export interface Service {
+  title: string;
+  icon: string;
+  desc: string;
 }
 
 export const BRAND: Brand = {
-    name: 'Elbglanz Reinigung',
-    city: 'Berlin',
+    name: 'Ossi Reinigung',
+    city: 'Dresden',
     phone: '+49 351 1234567',
-    email: 'info@Elbglanz.de',
-    address: 'Berlin Str. 12, 01159 Berlin'
+    email: 'ossireinigung@gmail.com',
+    address: 'Bismarckstr. 57, 01257 Dresden',
+    locationUrl: 'https://maps.app.goo.gl/QWPN5vVKLKk2sKnt8'
   };
 
 
@@ -34,6 +42,41 @@ export const NAV_ITEMS = [
   { label: 'Über uns', id: 'about_us' },
   { label: 'Leistungen', id: 'services' },
   { label: 'warum wir', id: 'warum_wir' },
+  { label: 'Unser Team', id: 'team' },
   { label: 'Kundenstimmen', id: 'testimonials' },
   { label: 'FAQ', id: 'faq' },
 ];
+
+
+export const OSSI_SERVICES: Service[] = [
+    {
+      title: 'Büroreinigung',
+      icon: 'building',
+      desc: 'Gründliche Reinigung für Büros und Co-Working Spaces.',
+    },
+    {
+      title: 'Baustellen‑/Grundreinigung',
+      icon: 'broom',
+      desc: 'Nach Bauarbeiten oder Umzug – tiefenrein & staubfrei.',
+    },
+    {
+      title: 'Arztpraxen & Kliniken',
+      icon: 'shield',
+      desc: 'Hygienestandards mit definierten Checklisten.',
+    },
+    {
+      title: 'Glas/Fenster',
+      icon: 'sparkles',
+      desc: 'Streifenfreier Glanz für Glasflächen & Schaufenster.',
+    },
+    {
+      title: 'Teppiche/Polster',
+      icon: 'leaf',
+      desc: 'Materialschonende Pflege & Geruchsneutralisierung.',
+    },
+    {
+      title: 'Unterhaltsreinigung',
+      icon: 'clock',
+      desc: 'Planbare Intervalle – täglich, wöchentlich, monatlich.',
+    },
+  ];

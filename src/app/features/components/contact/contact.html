@@ -31,7 +31,7 @@
       </div>
 
       <h2
-        class="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 mb-6 leading-tight"
+        class="text-3xl md:text-5xl font-black text-gray-900 mb-4"
       >
         Lassen Sie uns
         <span
@@ -54,7 +54,7 @@
       <!-- Contact Form -->
       <div class="order-2 lg:order-1">
         <div
-          class="rounded-3xl bg-white/90 backdrop-blur-sm p-8 lg:p-10 shadow-2xl shadow-blue-100/25 ring-1 ring-white/50 border border-blue-100/20"
+          class="rounded-3xl bg-white/90 backdrop-blur-sm p-6 lg:p-10 shadow-2xl shadow-blue-100/25 ring-1 ring-white/50 border border-blue-100/20"
         >
           <form
             [formGroup]="contactForm"
@@ -90,20 +90,16 @@
             <!-- Contact Fields -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div class="group">
-                <label class="block text-sm font-bold text-gray-900 mb-2"
-                  >Telefon <span class="text-red-500">*</span></label
-                >
+                <label class="block text-sm font-bold text-gray-900 mb-2">
+                  Telefon
+                </label>
                 <input
                   formControlName="phone"
-                  required
                   placeholder="+49 151 2345678"
                   class="placeholder-gray-500 w-full px-4 py-4 rounded-xl border-2 border-gray-100 focus:border-blue-500 focus:outline-none transition-all duration-300 bg-gray-50/50 font-medium hover:bg-gray-100/50 focus:bg-white group-hover:border-gray-200"
                 />
+                @if (phoneHasErrors) {
                 <div
-                  *ngIf="
-                    contactForm.get('phone')?.value &&
-                    !isValidPhone(contactForm.get('phone')?.value)
-                  "
                   class="flex items-center gap-2 text-sm text-red-600 mt-2 font-medium"
                 >
                   <svg
@@ -121,6 +117,7 @@
                   </svg>
                   Bitte gültige Telefonnummer eingeben.
                 </div>
+                }
               </div>
               <div class="group">
                 <label class="block text-sm font-bold text-gray-900 mb-2"
@@ -131,11 +128,8 @@
                   placeholder="max@unternehmen.de"
                   class="placeholder-gray-500 w-full px-4 py-4 rounded-xl border-2 border-gray-100 focus:border-blue-500 focus:outline-none transition-all duration-300 bg-gray-50/50 font-medium hover:bg-gray-100/50 focus:bg-white group-hover:border-gray-200"
                 />
+                @if (emailHasErrors) {
                 <div
-                  *ngIf="
-                    contactForm.get('email')?.value &&
-                    !isValidEmail(contactForm.get('email')?.value)
-                  "
                   class="flex items-center gap-2 text-sm text-red-600 mt-2 font-medium"
                 >
                   <svg
@@ -153,8 +147,35 @@
                   </svg>
                   Bitte gültige E-Mail eingeben.
                 </div>
+                }
               </div>
             </div>
+
+            @if (showContactRequiredError) {
+            <div
+              class="mt-2 flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-red-700"
+              role="alert"
+              aria-live="polite"
+            >
+              <svg
+                class="mt-0.5 h-5 w-5 flex-none"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <p class="text-sm font-medium">
+                Bitte geben Sie
+                <span class="font-semibold">Telefonnummer oder E-Mail</span> an.
+              </p>
+            </div>
+            }
 
             <!-- Service Selection -->
             <div class="relative">
@@ -167,20 +188,23 @@
                 (click)="$event.stopPropagation()"
               >
                 <div
-                  class="w-full px-4 py-4 rounded-xl border-2 border-gray-100 focus-within:border-blue-500 bg-gray-50/50 cursor-pointer transition-all duration-300 hover:bg-gray-100/50"
+                  tabindex="0"
+                  class="w-full px-4 py-4 rounded-xl border-2 border-gray-100 
+                        focus:border-blue-500 outline-none
+                        bg-gray-50/50 cursor-pointer 
+                        transition-all duration-300 hover:bg-gray-100/50"
                   (click)="toggleServiceDropdown()"
+                  (keydown.enter)="toggleServiceDropdown()"
                 >
                   <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
                       <div class="font-semibold">
-                        @if (selectedService) {
-                          <p class="text-sm text-gray-900">
-                            {{ selectedService.name }}
-                          </p>
-                        }@else {
-                          <p class="text-sm text-gray-500">
-                            Service auswählen
-                          </p>
+                        @if (contactForm.value.service) {
+                        <p class="text-sm text-gray-900">
+                          {{ contactForm.value.service }}
+                        </p>
+                        } @else {
+                        <p class="text-sm text-gray-500">Service auswählen</p>
                         }
                       </div>
                     </div>
@@ -207,19 +231,20 @@
                   class="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-gray-100 z-50 overflow-hidden transition-all duration-300"
                 >
                   <div class="max-h-64 overflow-y-auto">
-                    @for ( service of services; track service.id) {
-                    <div
-                      class="px-4 py-3 hover:bg-blue-50 cursor-pointer transition-colors duration-200 border-b border-gray-50 last:border-b-0"
+                    @for (service of services; track service.title) {
+                    <button
+                      class="px-4 w-full py-3 hover:bg-blue-50 cursor-pointer transition-colors duration-200 border-b border-gray-50 last:border-b-0"
                       (click)="selectService(service)"
+                      (keydown.enter)="selectService(service)"
                     >
                       <div class="flex items-center gap-3">
                         <div>
                           <p class="font-semibold text-gray-900">
-                            {{ service.name }}
+                            {{ service.title }}
                           </p>
                         </div>
                       </div>
-                    </div>
+                    </button>
                     }
                   </div>
                 </div>
@@ -244,10 +269,10 @@
             <div class="flex flex-col items-start gap-4 pt-4">
               <button
                 type="submit"
-                [disabled]="!contactForm.valid || submitting"
-                class="cursor-pointer w-full sm:w-auto px-8 py-4 rounded-2xl font-bold text-white shadow-xl transition-all duration-300 transform"
+                [disabled]="!isFormValid || submitting"
+                class="cursor-pointer w-full sm:w-auto px-4 lg:px-6 py-4 rounded-2xl font-bold text-white shadow-xl transition-all duration-300 transform"
                 [ngClass]="
-                  contactForm.valid && selectedService
+                  isFormValid
                     ? 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-blue-500/25 hover:shadow-blue-500/40'
                     : 'bg-gray-400 cursor-not-allowed'
                 "
@@ -282,7 +307,7 @@
               </button>
 
               <!-- Success/Error Messages -->
-              @if (submitResult.success == true) {
+              @if (submitResult.success === true) {
               <div class="flex items-center gap-2 text-green-600 font-semibold">
                 <div
                   class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center"
@@ -303,8 +328,8 @@
                 </div>
                 {{ submitResult.message }}
               </div>
-              }@else if (submitResult.success === false) {
-              <div class="flex items-center gap-2 text-red-600 font-semibold">
+              } @else if (submitResult.success === false) {
+              <!-- <div class="flex items-center gap-2 text-red-600 font-semibold">
                 <div
                   class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center"
                 >
@@ -323,7 +348,30 @@
                   </svg>
                 </div>
                 {{ submitResult.message }}
-              </div>
+              </div> -->
+
+              <div
+              class="mt-2 flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-red-700"
+              role="alert"
+              aria-live="polite"
+            >
+              <svg
+                class="mt-0.5 h-5 w-5 flex-none"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <p class="text-sm font-medium">
+                {{ submitResult.message }}
+              </p>
+            </div>
               }
             </div>
           </form>
@@ -334,15 +382,16 @@
       <aside class="space-y-8 order-1 lg:order-2">
         <!-- Direct Contact Card -->
         <div
-          class="rounded-3xl bg-white/90 backdrop-blur-sm p-8 shadow-2xl shadow-blue-100/25 ring-1 ring-white/50 border border-blue-100/20"
+          class="rounded-3xl bg-white/90 backdrop-blur-sm p-6 lg:p-10 shadow-2xl shadow-blue-100/25 ring-1 ring-white/50 border border-blue-100/20"
         >
           <h3 class="text-2xl font-bold text-gray-900 mb-6">
             Direkter Kontakt
           </h3>
 
           <div class="space-y-2">
-            <div
-              class="flex items-center gap-4 group cursor-pointer hover:bg-blue-50/50 p-3 rounded-xl transition-all duration-300"
+            <a
+              [href]="'tel:' + brand.phone"
+              class="cursor-pointer group flex items-center gap-4 hover:bg-blue-50/50 p-3 rounded-xl transition-all duration-300"
             >
               <div
                 class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform"
@@ -361,16 +410,14 @@
               </div>
               <div>
                 <p class="font-bold text-gray-900">Telefon</p>
-                <a
-                  [href]="getPhoneLink()"
-                  class="text-blue-600 hover:underline font-semibold"
-                >
+                <p class="text-blue-600 font-semibold group-hover:underline">
                   {{ brand.phone }}
-                </a>
+                </p>
               </div>
-            </div>
+            </a>
 
-            <div
+            <a
+              [href]="'mailto:' + brand.email"
               class="flex items-center gap-4 group cursor-pointer hover:bg-green-50/50 p-3 rounded-xl transition-all duration-300"
             >
               <div
@@ -389,19 +436,19 @@
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
               </div>
-              <div>
+              <div class="cursor-pointer group">
                 <p class="font-bold text-gray-900">E-Mail</p>
-                <a
-                  [href]="getEmailLink()"
-                  class="text-green-600 hover:underline font-semibold"
-                >
+                <p class="text-green-600 font-semibold group-hover:underline">
                   {{ brand.email }}
-                </a>
+                </p>
               </div>
-            </div>
+            </a>
 
-            <div
-              class="flex items-center gap-4 group hover:bg-purple-50/50 p-3 rounded-xl transition-all duration-300"
+            <a
+              [href]="brand.locationUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="cursor-pointer flex items-center gap-4 group hover:bg-purple-50/50 p-3 rounded-xl transition-all duration-300"
             >
               <div
                 class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform"
@@ -421,13 +468,13 @@
                 <p class="font-bold text-gray-900">Standort</p>
                 <p class="text-gray-600 font-medium">{{ brand.address }}</p>
               </div>
-            </div>
+            </a>
           </div>
         </div>
 
         <!-- Special Offer Box -->
         <div
-          class="rounded-3xl bg-gradient-to-br from-amber-400 to-orange-500 p-8 text-white shadow-xl shadow-amber-500/25"
+          class="rounded-3xl bg-gradient-to-br from-amber-400 to-orange-500 p-6 lg:p-10 text-white shadow-xl shadow-amber-500/25"
         >
           <div class="flex items-center gap-3 mb-4">
             <div
@@ -454,7 +501,7 @@
           </div>
           <p class="text-lg leading-relaxed mb-2">
             Sichern Sie sich jetzt
-            <span class="font-black text-2xl">15% Rabatt</span> auf Ihren ersten
+            <span class="font-black text-2xl">10% Rabatt</span> auf Ihren ersten
             Reinigungsservice!
           </p>
           <p class="text-amber-100 text-sm">

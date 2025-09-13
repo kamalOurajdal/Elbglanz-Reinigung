@@ -18,11 +18,6 @@ export class WhyUs {
 
    whyUs: WhyUsItem[] = [
     {
-      icon: 'leaf',
-      title: 'Öko‑freundlich',
-      desc: 'Zertifizierte, materialschonende Reinigungsmittel.',
-    },
-    {
       icon: 'shield',
       title: 'Versichert & geprüft',
       desc: 'Geschultes Team, Haftpflichtversicherung inklusive.',
