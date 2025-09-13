@@ -222,7 +222,6 @@ export class Contact {
       error: (error) => {
         this.submitting = false;
         this.submitResult = { success: false, message: 'Fehler beim Senden der E-Mail. Bitte versuchen Sie es später erneut.' };
-        // this.submitResult = { success: true, message: 'Email sent successfully!' };
         console.error('Email sending error:', error);
       }
     });
