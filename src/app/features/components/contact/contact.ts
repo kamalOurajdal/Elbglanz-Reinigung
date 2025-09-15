@@ -5,6 +5,7 @@ import { BRAND, OSSI_SERVICES, Service } from '../../../shared/constants';
 import { ContactService } from './contact.service';
 import { ContactForm, ContactModel } from './models/contact.model';
 import { Meta, Title } from '@angular/platform-browser';
+import { PhoneLinkPipe } from "../../../shared/pipes/format-phone.pipe";
 
 interface SubmitResult {
   success?: boolean | null;
@@ -13,7 +14,7 @@ interface SubmitResult {
 
 @Component({
   selector: 'app-contact',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, PhoneLinkPipe],
   templateUrl: './contact.html'
 })
 export class Contact {
@@ -259,20 +260,5 @@ export class Contact {
     });
     this.selectedService = null;
     this.showServiceDropdown = false;
-  }
-
-  /**
-   * Handle phone number input formatting (optional)
-   */
-  onPhoneInput(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    let value = input.value.replace(/[^\d+\-\s\(\)]/g, '');
-    
-    // Basic phone number formatting - you can enhance this
-    if (value && !value.startsWith('+') && !value.startsWith('0')) {
-      value = '+49 ' + value;
-    }
-    
-    this.contactForm.patchValue({ phone: value });
   }
 }

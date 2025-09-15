@@ -20,9 +20,9 @@ export interface NavItem {
 }
 
 export const BRAND: Brand = {
-    name: 'Ossi Reinigung',
+    name: 'Ossi',
     city: 'Dresden',
-    phone: '+49 351 1234567',
+    phone: '+49 1577 0039034',
     email: 'ossireinigung@gmail.com',
     address: 'Bismarckstr. 57, 01257 Dresden',
     locationUrl: 'https://maps.app.goo.gl/QWPN5vVKLKk2sKnt8'

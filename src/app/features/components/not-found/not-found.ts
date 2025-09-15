@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
 import { BRAND } from '../../../shared/constants';
+import { PhoneLinkPipe } from "../../../shared/pipes/format-phone.pipe";
 
 @Component({
   selector: 'app-not-found',
@@ -89,7 +90,7 @@ import { BRAND } from '../../../shared/constants';
           </p>
           <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8">
             <a 
-              href="tel:+49123456789" 
+              [href]="brand.phone | phoneLink" 
               class="flex items-center space-x-3 text-blue-600 hover:text-blue-700 font-medium transition-colors group"
             >
               <div class="p-2 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
@@ -117,6 +118,7 @@ import { BRAND } from '../../../shared/constants';
     </div>
   `,
   standalone: true,
+  imports: [PhoneLinkPipe],
 })
 export class NotFound {
   router = inject(Router);

@@ -23,8 +23,6 @@ export class Team {
     photoSrc: 'assets/images/team/director.jpg',
     photoAlt: 'Portrait of the Directeur général',
     bio: 'Mit über 10 Jahren Erfahrung in der Reinigungsbranche führt Max unser Team mit Leidenschaft und Engagement für höchste Qualitätsstandards. Seine Vision von exzellenter Servicequalität und kundenorientiertem Arbeiten prägt unser Unternehmen und garantiert Ihnen erstklassige Reinigungslösungen.',
-    email: 'max.mustermann@ossi-reinigung.de',
-    phone: '+49 351 1234567',
   };
 
   ngOnInit() {
