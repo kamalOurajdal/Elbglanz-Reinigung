@@ -1,9 +1,10 @@
-import { Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, Input, ViewChild } from '@angular/core';
 import { AbstractControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BRAND, OSSI_SERVICES, Service } from '../../../shared/constants';
 import { ContactService } from './contact.service';
 import { ContactForm, ContactModel } from './models/contact.model';
+import { Meta, Title } from '@angular/platform-browser';
 
 interface SubmitResult {
   success?: boolean | null;
@@ -17,7 +18,12 @@ interface SubmitResult {
 })
 export class Contact {
   @ViewChild('serviceArea', { static: false }) serviceArea?: ElementRef<HTMLElement>;
+  private readonly title = inject(Title);
+  private readonly meta = inject(Meta);
   private readonly contactService = inject(ContactService);
+
+  @Input() isHome: boolean = false;
+
   // Brand information
   brand = BRAND;
 
@@ -43,6 +49,16 @@ export class Contact {
   private fb = inject(NonNullableFormBuilder);
   constructor() {
     this.contactForm = this.initializeForm();
+  }
+
+
+  ngOnInit() {
+    if (this.isHome) return;
+    this.title.setTitle(`Kontakt – ${this.brand.name} Reinigung Dresden | Angebot anfordern`);
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Nehmen Sie Kontakt mit uns auf und fordern Sie Ihr kostenloses Reinigungsangebot an – telefonisch oder bequem über unser Formular.'
+    });
   }
 
   /**

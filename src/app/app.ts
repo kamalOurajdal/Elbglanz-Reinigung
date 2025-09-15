@@ -1,20 +1,16 @@
-// app.component.ts
-import { Component } from '@angular/core';
+
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormsModule,
   ReactiveFormsModule
 } from '@angular/forms';
 import { Header } from './features/components/header/header';
-import { Hero } from './features/components/hero/hero';
-import { Services } from "./features/components/services/services";
-import { WhyUs } from "./features/components/why-us/why-us";
-import { Testimonials } from "./features/components/testimonials/testimonials";
-import { Faq } from "./features/components/faq/faq";
-import { Contact } from "./features/components/contact/contact";
 import { Footer } from "./features/components/footer/footer";
-import { AboutUs } from "./features/components/about-us/about-us";
-import { Team } from "./features/components/team/team";
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs';
+import { log } from 'console';
+import { scrollToId } from './shared/utils/shared.utils';
 
 
 @Component({
@@ -25,58 +21,34 @@ import { Team } from "./features/components/team/team";
     FormsModule,
     ReactiveFormsModule,
     Header,
-    Hero,
-    Services,
-    WhyUs,
-    Testimonials,
-    Faq,
-    Contact,
     Footer,
-    AboutUs,
-    Team
+    RouterOutlet
 ],
   template: `
     <div
-      class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/40 text-gray-800"
+      class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/40 text-gray-800 scroll-mt-40"
     >
-      <!-- NAV -->
       <app-header/>
-
-      <!-- HERO -->
-      <app-hero/>
-
-      <app-about-us/>
-
-      <!-- TRUST BAR -->
-     <!-- <app-trust-bar/> -->
-
-      <!-- SERVICES -->
-      <app-services/>
-
-      <!-- WHY US -->
-      <app-why-us/>
-
-      <!-- STATS -->
-      <!-- <app-stats/> -->
-       <!-- <app-team></app-team> -->
-       <app-team-2></app-team-2>
-
-      <!-- TESTIMONIALS -->
-      <app-testimonials/>
-
-  
-
-      <!-- CONTACT / LEAD FORM -->
-      <app-contact/>
-
-      <!-- FAQ -->
-      <app-faq/>
-
-      <!-- FOOTER -->
+      <main>
+        <router-outlet></router-outlet>
+      </main>
       <app-footer/>
     </div>
   `,
 })
 export class App {
 
+  private router = inject(Router);
+
+  constructor() {
+    this.router.events.pipe(filter(e => e instanceof NavigationEnd))
+      .subscribe(() => {
+        const frag = this.router.parseUrl(this.router.url).fragment;
+        if (!frag) return;
+        setTimeout(() =>
+          scrollToId(frag)
+        , 0);
+
+      });
+  }
 }

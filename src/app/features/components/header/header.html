@@ -10,28 +10,35 @@
       (click)="scrollToId('home')"
     >
       <div class="">
-        <img ngSrc="assets/icons/header/ossi-icon.svg" height="36" width="36" alt="Ossi Icon"/>
+        <img
+          ngSrc="assets/icons/header/ossi-icon.svg"
+          height="36"
+          width="36"
+          alt="Ossi Icon"
+        />
       </div>
       <div>
-        <span class="font-bold  text-lg text-blue-600">{{ brand.name }}</span>
+        <span class="font-bold text-lg text-blue-600">{{ brand.name }}</span>
         <p class="text-xs text-gray-500 font-medium">
           Professionelle Reinigung
         </p>
       </div>
     </div>
     <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
-      @for (item of navItems; track $index) {
-      <button
-        (click)="scrollToId(item.id)"
+      @for (item of navItems; track item.label) {
+      <a
+        routerLink="/"
+        [fragment]="item.fragment"
+        routerLinkActive="text-blue-600 font-semibold"
         class="text-gray-700 hover:text-blue-600 transition-colors duration-200 relative group cursor-pointer"
       >
         {{ item.label }}
         <span
           class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"
         ></span>
-      </button>
+      </a>
       }
-    </nav>              
+    </nav>
 
     <button
       (click)="toggleMobileMenu()"
@@ -60,13 +67,15 @@
   @if (mobileMenuOpen) {
   <div class="md:hidden border-t border-gray-200 bg-white/95 backdrop-blur-lg">
     <div class="px-4 py-4 space-y-1">
-      @for (item of navItems; track item.id) {
-      <button
-        (click)="closeMobileMenuAndScroll(item.id)"
+      @for (item of navItems; track item.label) {
+      <a
+        routerLink="/"
+        [fragment]="item.fragment"
+        routerLinkActive="text-blue-600 font-semibold"
         class="cursor-pointer block w-full text-left py-3 px-4 rounded-xl text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all"
       >
         {{ item.label }}
-      </button>
+      </a>
       }
     </div>
   </div>

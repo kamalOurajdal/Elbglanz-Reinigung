@@ -1,5 +1,7 @@
-import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Meta, Title } from '@angular/platform-browser';
+import { BRAND } from '../../../shared/constants';
 
 
 interface FeaturePoint {
@@ -13,11 +15,6 @@ interface FeaturePoint {
   iconBg: string;
 }
 
-interface Stat {
-  value: string;
-  label: string;
-  color: string;
-}
 
 @Component({
   selector: 'app-about-us',
@@ -25,6 +22,12 @@ interface Stat {
   templateUrl: './about-us.html'
 })
 export class AboutUs {
+  @Input() isHome:boolean = false;
+  private title = inject(Title);
+  private meta = inject(Meta);
+
+  brand = BRAND;
+
   features: FeaturePoint[] = [
     {
       id: 'skilled-staff',
@@ -68,10 +71,13 @@ export class AboutUs {
     }
   ];
 
-  stats: Stat[] = [
-    { value: '15+', label: 'Jahre Erfahrung', color: 'text-blue-600' },
-    { value: '500+', label: 'Projekte erfolgreich', color: 'text-green-600' },
-    { value: '24/7', label: 'Service verfügbar', color: 'text-purple-600' },
-    { value: '100%', label: 'Zufriedenheitsrate', color: 'text-amber-600' }
-  ];
+  ngOnInit() {
+    if (!this.isHome) {
+      this.title.setTitle(`Über uns – ${this.brand.name} Reinigung Dresden`);
+      this.meta.updateTag({
+        name: 'description',
+        content: `Lernen Sie ${this.brand.name} Reinigung kennen: erfahrenes Team, höchste Qualitätsstandards und persönliche Betreuung in Dresden und Umgebung.`
+      });
+    }
+  }
 }

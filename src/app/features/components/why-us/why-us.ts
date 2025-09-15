@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { ICONS } from '../../../shared/constants';
+import { Component, inject, Input } from '@angular/core';
+import { BRAND, ICONS } from '../../../shared/constants';
+import { Meta, Title } from '@angular/platform-browser';
 
 interface WhyUsItem {
   icon: string;
@@ -14,7 +15,12 @@ interface WhyUsItem {
   templateUrl: './why-us.html',
 })
 export class WhyUs {
+  @Input() isHome: boolean = false;
+  private title = inject(Title);
+  private meta = inject(Meta);
   icons = ICONS;
+
+  brand = BRAND;
 
    whyUs: WhyUsItem[] = [
     {
@@ -33,4 +39,14 @@ export class WhyUs {
       desc: 'Wir kommen nach – ohne Zusatzkosten.',
     },
   ];
+
+  ngOnInit() {
+    if (!this.isHome) {
+      this.title.setTitle(`Warum ${this.brand.name} Reinigung – Qualität & Vertrauen`);
+      this.meta.updateTag({
+        name: 'description',
+        content: `Darum entscheiden sich Kunden für uns: umweltfreundliche Methoden, versicherte Leistungen, geschultes Fachpersonal und flexible Termine.`
+      });
+    }
+  }
 }

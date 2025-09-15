@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { BRAND, ICONS, NAV_ITEMS } from '../../../shared/constants';
 import { scrollToId } from '../../../shared/utils/shared.utils';
 import { NgOptimizedImage } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, RouterLink],
   templateUrl: './footer.html'
 })
 export class Footer {

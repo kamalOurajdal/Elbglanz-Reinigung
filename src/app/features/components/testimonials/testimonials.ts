@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
+import { BRAND } from '../../../shared/constants';
 
 interface Testimonial {
   name: string;
@@ -43,6 +45,12 @@ interface Testimonial {
   ],
 })
 export class Testimonials {
+  @Input() isHome: boolean = false;
+  private title = inject(Title);
+  private meta = inject(Meta);
+
+  brand = BRAND;
+  
   testimonials: Testimonial[] = [
     {
       name: 'Lukas R.',
@@ -76,5 +84,14 @@ export class Testimonials {
 
   getStarArray(count: number): number[] {
     return Array(count).fill(0);
+  }
+
+  ngOnInit() {
+    if (this.isHome) return;
+    this.title.setTitle(`Kundenstimmen – ${this.brand.name} Reinigung Dresden`);
+    this.meta.updateTag({
+      name: 'description',
+      content: `Echte Bewertungen unserer Kunden: hohe Qualität, Zuverlässigkeit und herausragender Service in Dresden und Umgebung.`
+    });
   }
 }

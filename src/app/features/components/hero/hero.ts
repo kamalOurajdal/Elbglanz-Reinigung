@@ -1,16 +1,18 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BRAND, ICONS } from '../../../shared/constants';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './hero.html',
 })
 export class Hero {
   brand = BRAND;
   icons = ICONS;
+
   getPhoneLink(): string {
     return `tel:${this.brand.phone.replace(/\s/g, '')}`;
   }

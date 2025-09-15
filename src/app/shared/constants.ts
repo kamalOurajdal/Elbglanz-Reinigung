@@ -13,6 +13,12 @@ export interface Service {
   desc: string;
 }
 
+export interface NavItem {
+  label: string;
+  path: string;      // route to navigate
+  fragment?: string;  // section id on home
+}
+
 export const BRAND: Brand = {
     name: 'Ossi Reinigung',
     city: 'Dresden',
@@ -37,14 +43,14 @@ export const ICONS: any = {
     check: 'M20 6 9 17l-5-5'
   };
 
-export const NAV_ITEMS = [
-  { label: 'Startseite', id: 'home' },
-  { label: 'Über uns', id: 'about_us' },
-  { label: 'Leistungen', id: 'services' },
-  { label: 'warum wir', id: 'warum_wir' },
-  { label: 'Unser Team', id: 'team' },
-  { label: 'Kundenstimmen', id: 'testimonials' },
-  { label: 'FAQ', id: 'faq' },
+export const NAV_ITEMS: NavItem[] = [
+  { label: 'Startseite', path: '/', fragment: 'startseite' },
+  { label: 'Über uns', path: '/ueber-uns', fragment: 'ueber-uns' },
+  { label: 'Leistungen', path: '/leistungen', fragment: 'leistungen' },
+  { label: 'Warum wir', path: '/warum-wir', fragment: 'warum-wir' },
+  { label: 'Unser Team', path: '/unser-team', fragment: 'unser-team' },
+  { label: 'Kundenstimmen', path: '/kundenstimmen', fragment: 'kundenstimmen' },
+  { label: 'FAQ', path: '/faq', fragment: 'faq' },
 ];
 
 

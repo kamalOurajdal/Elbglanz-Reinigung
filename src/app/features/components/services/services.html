@@ -1,6 +1,6 @@
 <section
         class="py-20 md:py-28 bg-gradient-to-b from-white to-gray-50/50"
-        id="services"
+        id="leistungen"
       >
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="max-w-3xl mx-auto text-center mb-16">
@@ -21,8 +21,8 @@
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             @for (service of services; track service.title) {
               <div
-              class="group relative rounded-3xl p-8 bg-white shadow-lg shadow-gray-100/50 ring-1 ring-gray-100 hover:shadow-xl hover:shadow-blue-100/50 hover:ring-blue-200/50 transition-all duration-300 hover:-translate-y-1"
-            >
+                class="group relative rounded-3xl p-8 bg-white shadow-lg shadow-gray-100/50 ring-1 ring-gray-100 hover:shadow-xl hover:shadow-blue-100/50 hover:ring-blue-200/50 transition-all duration-300 hover:-translate-y-1"
+              >
               <!-- Service Icon -->
               <div class="relative mb-6">
                 <div
@@ -53,8 +53,9 @@
                 {{ service.desc }}
               </p>
 
-              <button
-                (click)="scrollToId('contact')"
+              <a
+                routerLink="/"
+                fragment="kontakt"
                 class="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-700 group-hover:gap-3 transition-all duration-300 cursor-pointer"
               >
                 Angebot anfragen
@@ -71,7 +72,7 @@
                     d="M9 5l7 7-7 7"
                   />
                 </svg>
-              </button>
+              </a>
 
               <!-- Background decoration -->
               <div
