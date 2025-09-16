@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { BRAND } from '../../../shared/constants';
@@ -6,7 +6,7 @@ import { BRAND } from '../../../shared/constants';
 @Component({
   selector: 'app-team',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgOptimizedImage],
   templateUrl: './team.html',
   styles: [],
 })
@@ -20,7 +20,7 @@ export class Team {
   director = {
     name: 'Lvana Chi haja',
     title: 'Directeur général',
-    photoSrc: 'assets/images/team/director.jpg',
+    photoSrc: 'assets/images/team/director.webp',
     photoAlt: 'Portrait of the Directeur général',
     bio: 'Mit über 10 Jahren Erfahrung in der Reinigungsbranche führt Max unser Team mit Leidenschaft und Engagement für höchste Qualitätsstandards. Seine Vision von exzellenter Servicequalität und kundenorientiertem Arbeiten prägt unser Unternehmen und garantiert Ihnen erstklassige Reinigungslösungen.',
   };

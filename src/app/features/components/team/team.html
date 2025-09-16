@@ -41,9 +41,11 @@
           >
             <img
               [alt]="director.photoAlt"
-              [src]="director.photoSrc"
+              [ngSrc]="director.photoSrc"
               class="w-full h-full object-cover transition-all duration-700 group-hover:scale-[1.05] group-hover:brightness-110"
               loading="lazy"
+              width="800"
+              height="533"
             />
 
             <!-- Gradient overlay for depth -->
