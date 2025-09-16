@@ -32,7 +32,11 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets/"
-              } 
+              },
+              "src/favicon.ico",
+              "src/manifest.webmanifest",
+              "src/sitemap.xml",
+              "src/robots.txt"
             ],
             "styles": [
               "src/styles.scss"
