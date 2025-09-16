@@ -1,43 +1,43 @@
 <section
   id="unser-team"
-  class="py-24 md:py-32 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative overflow-hidden"
+  class="py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative overflow-hidden"
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
     <!-- Section Header -->
-    <div class="max-w-3xl mx-auto text-center mb-16">
+    <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
       <div
-        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-medium text-sm mb-4"
+        class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-blue-100 text-blue-700 font-medium text-xs sm:text-sm mb-4"
       >
-        <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+        <div class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full animate-pulse"></div>
         Unser Team
       </div>
-      <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-4">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-4 leading-tight">
         Führung mit
         <span class="text-blue-600">Leidenschaft</span>
       </h2>
-      <p class="text-xl text-gray-600">
+      <p class="text-lg sm:text-xl text-gray-600 px-2 sm:px-0">
         Lernen Sie die Person kennen, die hinter unserem Erfolg steht
       </p>
     </div>
 
     <!-- Enhanced Director Card -->
-    <div class="group relative mb-20">
+    <div class="group relative mb-16 sm:mb-20">
       <!-- Card with advanced styling -->
       <div
-        class="relative p-4 flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch rounded-[2rem] bg-white/90 backdrop-blur-sm shadow-md hover:shadow-xl transition-shadow duration-500 overflow-hidden"
+        class="relative p-4 sm:p-6 lg:p-8 flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-12 items-stretch rounded-2xl sm:rounded-[2rem] bg-white/90 backdrop-blur-sm shadow-md hover:shadow-xl transition-shadow duration-500 overflow-hidden"
       >
         <!-- Subtle inner glow -->
         <div
-          class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 rounded-2xl sm:rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         ></div>
 
         <!-- Enhanced Photo Section -->
         <figure
-          class="relative w-full lg:w-[370px] h-[350px] lg:h-[450px] flex-shrink-0 z-10"
+          class="relative h-96 md:h-full sm:max-w-sm lg:max-w-none lg:w-[370px]  sm:h-80  lg:h-[450px] flex-shrink-0 z-10 mx-auto lg:mx-0"
         >
           <!-- Photo -->
           <div
-            class="relative border-1 border-blue-300 group-hover:border-blue-500 h-full w-full overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 shadow-2xl shadow-blue-500/30 group-hover:shadow-3xl group-hover:shadow-indigo-500/40 transition-all duration-500"
+            class="relative border border-blue-300 group-hover:border-blue-500 h-full w-full overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 shadow-xl sm:shadow-2xl shadow-blue-500/30 group-hover:shadow-3xl group-hover:shadow-indigo-500/40 transition-all duration-500"
           >
             <img
               [alt]="director.photoAlt"
@@ -55,74 +55,73 @@
 
             <!-- Decorative corner accents -->
             <div
-              class="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              class="absolute top-2 left-2 sm:top-4 sm:left-4 w-6 h-6 sm:w-8 sm:h-8 border-l-2 border-t-2 border-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             ></div>
             <div
-              class="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              class="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 w-6 h-6 sm:w-8 sm:h-8 border-r-2 border-b-2 border-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             ></div>
           </div>
         </figure>
 
         <!-- Content Section -->
-        <div class="flex-1 min-w-0 z-10 flex flex-col justify-center">
-          <div class="mb-8 mt-2 lg:mt-0">
+        <div class="flex-1 min-w-0 z-10 flex flex-col justify-center text-center lg:text-left">
+          <div class="mb-6 sm:mb-8">
             <h3
-              class="text-3xl lg:text-4xl font-black text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300"
+              class="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 mb-2 sm:mb-3 group-hover:text-blue-600 transition-colors duration-300"
             >
               {{ director.name }}
             </h3>
             <p
-              class="text-xl font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4"
+              class="text-lg sm:text-xl font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-3 sm:mb-4"
             >
               Geschäftsführer
             </p>
             <div
-              class="w-20 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full group-hover:w-32 transition-all duration-300"
+              class="w-16 sm:w-20 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full group-hover:w-24 sm:group-hover:w-32 transition-all duration-300 mx-auto lg:mx-0"
             ></div>
           </div>
 
           <!-- Bio -->
           <div class="prose prose-lg prose-gray max-w-none">
-            <p class="text-gray-600 leading-relaxed text-lg mb-8">
+            <p class="text-gray-600 leading-relaxed text-base sm:text-lg mb-6 sm:mb-8">
               {{ director.bio }}
             </p>
           </div>
         </div>
       </div>
     </div>
+
     <!-- Quote Section -->
-
-
-
-    <div class="max-w-5xl mx-auto relative z-10 bg-gray-50 p-12 lg:p-16 border border-blue-600/20 rounded-3xl shadow-lg">
-    <!-- Top left quote mark -->
-    <div class="absolute top-6 left-6">
-      <div class="text-5xl font-bold text-blue-600 leading-none">"</div>
-    </div>
-
-    <!-- Quote text -->
-    <div class="max-w-4xl mx-auto text-center mb-16">
-      <p class="text-xl lg:text-2xl text-gray-700 leading-relaxed font-light">
-        „Qualität ist kein Zufall. Sie ist das Ergebnis von Engagement,
-        Erfahrung und dem unbedingten Willen, unseren Kunden den
-        bestmöglichen Service zu bieten."
-      </p>
-    </div>
-
-    <!-- Attribution with avatar -->
-    <div class="flex items-center justify-center gap-4">
-      <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
-        <span class="text-white font-bold text-lg">M</span>
+    <div class="max-w-5xl mx-auto relative z-10 bg-gray-50 p-6 sm:p-8 md:p-12 lg:p-16 border border-blue-600/20 rounded-2xl sm:rounded-3xl shadow-lg">
+      <!-- Top left quote mark -->
+      <div class="absolute top-3 left-3 sm:top-4 sm:left-4 md:top-6 md:left-6">
+        <div class="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-600 leading-none">"</div>
       </div>
-      <div>
-        <p class="text-lg font-bold text-gray-900">{{director.name}}</p>
-        <p class="text-sm text-gray-600">Geschäftsführer</p>
+
+      <!-- Quote text -->
+      <div class="max-w-4xl mx-auto text-center mb-8 sm:mb-12 md:mb-16">
+        <p class="text-lg sm:text-xl lg:text-2xl text-gray-700 leading-relaxed font-light px-4 sm:px-8">
+          „Qualität ist kein Zufall. Sie ist das Ergebnis von Engagement,
+          Erfahrung und dem unbedingten Willen, unseren Kunden den
+          bestmöglichen Service zu bieten."
+        </p>
+      </div>
+
+      <!-- Attribution with avatar -->
+      <div class="flex items-center justify-center gap-3 sm:gap-4">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+          <span class="text-white font-bold text-base sm:text-lg">M</span>
+        </div>
+        <div class="text-center sm:text-left">
+          <p class="text-base sm:text-lg font-bold text-gray-900">{{director.name}}</p>
+          <p class="text-xs sm:text-sm text-gray-600">Geschäftsführer</p>
+        </div>
+      </div>
+
+      <!-- Bottom right quote mark -->
+      <div class="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-6 md:right-6">
+        <div class="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-600 leading-none rotate-180">"</div>
       </div>
     </div>
-    <!-- Bottom right quote mark -->
-    <div class="absolute bottom-6 right-6">
-      <div class="text-5xl font-bold text-blue-600 leading-none rotate-180">"</div>
-    </div>
-  </div>
   </div>
 </section>

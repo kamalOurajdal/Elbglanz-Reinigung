@@ -16,7 +16,7 @@ export interface Service {
 export interface NavItem {
   label: string;
   path: string;      // route to navigate
-  fragment?: string;  // section id on home
+  fragment: string;  // section id on home
 }
 
 export const BRAND: Brand = {

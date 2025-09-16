@@ -1,5 +1,5 @@
 
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormsModule,
@@ -7,10 +7,7 @@ import {
 } from '@angular/forms';
 import { Header } from './features/components/header/header';
 import { Footer } from "./features/components/footer/footer";
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { filter } from 'rxjs';
-import { log } from 'console';
-import { scrollToId } from './shared/utils/shared.utils';
+import { RouterOutlet } from '@angular/router';
 
 
 @Component({
@@ -37,18 +34,4 @@ import { scrollToId } from './shared/utils/shared.utils';
   `,
 })
 export class App {
-
-  private router = inject(Router);
-
-  constructor() {
-    this.router.events.pipe(filter(e => e instanceof NavigationEnd))
-      .subscribe(() => {
-        const frag = this.router.parseUrl(this.router.url).fragment;
-        if (!frag) return;
-        setTimeout(() =>
-          scrollToId(frag)
-        , 0);
-
-      });
-  }
 }
