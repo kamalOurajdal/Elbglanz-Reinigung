@@ -6,7 +6,7 @@
     
     <!-- Homepage - Highest Priority -->
     <url>
-        <loc>https://yourdomain.com/</loc>
+        <loc>https://elbglanz-reinigung.vercel.app/</loc>
         <lastmod>2024-01-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
@@ -14,7 +14,7 @@
     
     <!-- Services Page - High Priority (main business content) -->
     <url>
-        <loc>https://yourdomain.com/leistungen</loc>
+        <loc>https://elbglanz-reinigung.vercel.app/leistungen</loc>
         <lastmod>2024-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
@@ -22,7 +22,7 @@
     
     <!-- About Us Page -->
     <url>
-        <loc>https://yourdomain.com/ueber-uns</loc>
+        <loc>https://elbglanz-reinigung.vercel.app/ueber-uns</loc>
         <lastmod>2024-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -30,7 +30,7 @@
     
     <!-- Why Us Page -->
     <url>
-        <loc>https://yourdomain.com/warum-wir</loc>
+        <loc>https://elbglanz-reinigung.vercel.app/warum-wir</loc>
         <lastmod>2024-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -38,7 +38,7 @@
     
     <!-- Team Page -->
     <url>
-        <loc>https://yourdomain.com/unser-team</loc>
+        <loc>https://elbglanz-reinigung.vercel.app/unser-team</loc>
         <lastmod>2024-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
@@ -46,7 +46,7 @@
     
     <!-- Customer Reviews/Testimonials Page -->
     <url>
-        <loc>https://yourdomain.com/kundenstimmen</loc>
+        <loc>https://elbglanz-reinigung.vercel.app/kundenstimmen</loc>
         <lastmod>2024-01-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -54,7 +54,7 @@
     
     <!-- FAQ Page -->
     <url>
-        <loc>https://yourdomain.com/faq</loc>
+        <loc>https://elbglanz-reinigung.vercel.app/faq</loc>
         <lastmod>2024-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
@@ -62,7 +62,7 @@
     
     <!-- Contact Page -->
     <url>
-        <loc>https://yourdomain.com/kontakt</loc>
+        <loc>https://elbglanz-reinigung.vercel.app/kontakt</loc>
         <lastmod>2024-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
