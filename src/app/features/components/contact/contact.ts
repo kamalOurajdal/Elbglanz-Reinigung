@@ -164,7 +164,6 @@ export class Contact {
    */
   toggleServiceDropdown(): void {
     this.showServiceDropdown = !this.showServiceDropdown;
-    console.log('toggleServiceDropdown', this.showServiceDropdown);
   }
 
   /**

@@ -16,8 +16,6 @@ export class Services {
   icons = ICONS;
   brand = BRAND;
 
-  scrollToId = scrollToId;
-
   services: Service[] = OSSI_SERVICES;
 
   ngOnInit() {

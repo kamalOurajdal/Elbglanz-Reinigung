@@ -132,8 +132,4 @@ export class NotFound {
   goBack(): void {
     window.history.back();
   }
-
-  navigateTo(route: string): void {
-    this.router.navigate([route]);
-  }
 }

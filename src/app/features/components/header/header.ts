@@ -1,8 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { BRAND, ICONS, NAV_ITEMS } from '../../../shared/constants';
 import { scrollToId } from '../../../shared/utils/shared.utils';
 import { NgOptimizedImage } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 interface Brand {
   name: string;
@@ -18,7 +18,6 @@ interface Brand {
   imports: [NgOptimizedImage, RouterLink],
 })
 export class Header {
-  router = inject(Router);
   mobileMenuOpen = false;
   currentRoute = '/';
 
@@ -32,11 +31,6 @@ export class Header {
     scrollToId(id);
 
     this.mobileMenuOpen = false;
-  }
-
-  closeMobileMenuAndScroll(id: string): void {
-    this.mobileMenuOpen = false;
-    this.scrollToId(id);
   }
 
   toggleMobileMenu(): void {

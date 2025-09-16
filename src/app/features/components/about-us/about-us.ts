@@ -1,5 +1,5 @@
 import { Component, inject, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 import { BRAND } from '../../../shared/constants';
 
@@ -18,7 +18,7 @@ interface FeaturePoint {
 
 @Component({
   selector: 'app-about-us',
-  imports: [CommonModule],
+  imports: [CommonModule, NgOptimizedImage],
   templateUrl: './about-us.html'
 })
 export class AboutUs {
