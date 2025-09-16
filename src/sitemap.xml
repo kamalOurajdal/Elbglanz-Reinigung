@@ -6,7 +6,7 @@
     
     <!-- Homepage - Highest Priority -->
     <url>
-        <loc>https://elbglanz-reinigung.vercel.app/</loc>
+        <loc>https://www.madebykamal.com/</loc>
         <lastmod>2024-01-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
@@ -14,7 +14,7 @@
     
     <!-- Services Page - High Priority (main business content) -->
     <url>
-        <loc>https://elbglanz-reinigung.vercel.app/leistungen</loc>
+        <loc>https://www.madebykamal.com/leistungen</loc>
         <lastmod>2024-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
@@ -22,7 +22,7 @@
     
     <!-- About Us Page -->
     <url>
-        <loc>https://elbglanz-reinigung.vercel.app/ueber-uns</loc>
+        <loc>https://www.madebykamal.com/ueber-uns</loc>
         <lastmod>2024-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -30,7 +30,7 @@
     
     <!-- Why Us Page -->
     <url>
-        <loc>https://elbglanz-reinigung.vercel.app/warum-wir</loc>
+        <loc>https://www.madebykamal.com/warum-wir</loc>
         <lastmod>2024-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -38,7 +38,7 @@
     
     <!-- Team Page -->
     <url>
-        <loc>https://elbglanz-reinigung.vercel.app/unser-team</loc>
+        <loc>https://www.madebykamal.com/unser-team</loc>
         <lastmod>2024-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
@@ -46,7 +46,7 @@
     
     <!-- Customer Reviews/Testimonials Page -->
     <url>
-        <loc>https://elbglanz-reinigung.vercel.app/kundenstimmen</loc>
+        <loc>https://www.madebykamal.com/kundenstimmen</loc>
         <lastmod>2024-01-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -54,7 +54,7 @@
     
     <!-- FAQ Page -->
     <url>
-        <loc>https://elbglanz-reinigung.vercel.app/faq</loc>
+        <loc>https://www.madebykamal.com/faq</loc>
         <lastmod>2024-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
@@ -62,7 +62,7 @@
     
     <!-- Contact Page -->
     <url>
-        <loc>https://elbglanz-reinigung.vercel.app/kontakt</loc>
+        <loc>https://www.madebykamal.com/kontakt</loc>
         <lastmod>2024-01-15</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
